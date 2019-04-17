@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import TrainingList from "./components/TrainingList";
 import "./App.css";
 import CustomerList from "./components/CustomerList";
 class App extends Component {
@@ -9,6 +9,7 @@ class App extends Component {
         <header className="App-header">
           <h2>Customer database</h2>
         </header>
+        <TrainingList />
         <CustomerList />
       </div>
     );
