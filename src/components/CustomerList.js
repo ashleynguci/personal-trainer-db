@@ -13,9 +13,18 @@ export default class componentName extends Component {
       .then(jsondata => this.setState({ customers: jsondata.content }))
       .catch(err => console.error(err));
   }
-
+  getIdNumber(link) {
+    return link.replace(/[\D]/g, "");
+  }
   render() {
     const columns = [
+      {
+        Header: "ID number",
+        accessor: "links[0].href",
+        Cell: row => {
+          return row.value.replace(/[\D]/g, "");
+        }
+      },
       { Header: "Firstname", accessor: "firstname" },
       { Header: "Lastname", accessor: "lastname" },
       { Header: "Address", accessor: "streetaddress" },
