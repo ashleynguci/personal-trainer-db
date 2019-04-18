@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-
+import Moment from "react-moment";
 export default class componentName extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +15,13 @@ export default class componentName extends Component {
   }
   render() {
     const columns = [
-      { Header: "Date", accessor: "date" },
+      {
+        Header: "Date",
+        accessor: "date",
+        Cell: row => {
+          return <Moment format="DD/MM/YYYY">{row.value}</Moment>;
+        }
+      },
       { Header: "Duration in minutes", accessor: "duration" },
       { Header: "Activity", accessor: "activity" },
       { Header: "Customer ID", accessor: "customer.id" }
