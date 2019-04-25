@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import Button from "@material-ui/core/Button";
 
 export default class componentName extends Component {
   constructor(props) {
@@ -45,7 +46,9 @@ export default class componentName extends Component {
         Header: "",
         accessor: "links[0].href",
         Cell: value => (
-          <button onClick={() => this.deleteCustomer(value)}>Delete</button>
+          <Button color="secondary" onClick={() => this.deleteCustomer(value)}>
+            Delete
+          </Button>
         )
       }
     ];
