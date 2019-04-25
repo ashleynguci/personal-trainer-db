@@ -3,7 +3,7 @@ import TrainingList from "./components/TrainingList";
 import "./App.css";
 import Navigator from "./components/Navigator";
 import CustomerList from "./components/CustomerList";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 class App extends Component {
   render() {
     return (

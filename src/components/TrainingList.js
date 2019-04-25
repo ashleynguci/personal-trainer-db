@@ -19,7 +19,7 @@ export default class componentName extends Component {
         Header: "Date",
         accessor: "date",
         Cell: row => {
-          return <Moment format="DD/MM/YYYY">{row.value}</Moment>;
+          return <Moment format="DD.MM.YYYY">{row.value}</Moment>;
         }
       },
       { Header: "Duration in minutes", accessor: "duration" },
