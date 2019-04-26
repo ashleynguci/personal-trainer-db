@@ -4,10 +4,11 @@ import "react-table/react-table.css";
 import Button from "@material-ui/core/Button";
 import AddCustomer from "./AddCustomer";
 import { Snackbar } from "@material-ui/core";
+import EditCustomer from "./EditCustomer";
 export default class componentName extends Component {
   constructor(props) {
     super(props);
-    this.state = { customers: [] };
+    this.state = { customers: [], message: "" };
   }
   componentDidMount() {
     this.loadCustomers();
@@ -41,7 +42,21 @@ export default class componentName extends Component {
       body: JSON.stringify(customer)
     })
       .then(res => this.loadCustomers())
-      .then(res => this.setState({ open: true }))
+      .then(res => this.setState({ open: true, message: "Added new customer" }))
+      .catch(err => console.error(err));
+  };
+  updateCustomer = (link, updatedCustomer) => {
+    fetch(link, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedCustomer)
+    })
+      .then(res => this.loadCustomers())
+      .then(res =>
+        this.setState({ open: true, message: "Updated new customer" })
+      )
       .catch(err => console.error(err));
   };
   handleClose = () => {
@@ -63,6 +78,20 @@ export default class componentName extends Component {
       { Header: "City", accessor: "city" },
       { Header: "Email", accessor: "email" },
       { Header: "Phone", accessor: "phone" },
+      {
+        Header: "",
+        accessor: "links[0].href",
+        filterable: "false",
+        sortable: "false",
+        width: 100,
+        Cell: ({ value, row }) => (
+          <EditCustomer
+            updateCustomer={this.updateCustomer}
+            link={value}
+            customer={row}
+          />
+        )
+      },
       {
         Header: "",
         accessor: "links[0].href",
@@ -92,7 +121,7 @@ export default class componentName extends Component {
           ContentProps={{
             "aria-describedby": "message-id"
           }}
-          message="Customer added successfully"
+          message={this.state.message}
         />
       </div>
     );

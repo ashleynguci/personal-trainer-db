@@ -23,7 +23,17 @@ export default class componentName extends Component {
     };
   }
   handleClickOpen = () => {
-    this.setState({ open: true });
+    this.setState({
+      open: true,
+      firstname: this.props.customer.firstname,
+      lastname: this.props.customer.lastname,
+      streetaddress: this.props.customer.streetaddress,
+      postcode: this.props.customer.postcode,
+
+      city: this.props.customer.city,
+      email: this.props.customer.email,
+      phone: this.props.customer.phone
+    });
   };
 
   handleClose = () => {
@@ -32,7 +42,7 @@ export default class componentName extends Component {
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
   };
-  addCustomer = () => {
+  updateCustomer = () => {
     const newCustomer = {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
@@ -43,7 +53,7 @@ export default class componentName extends Component {
       email: this.state.email,
       phone: this.state.phone
     };
-    this.props.saveCustomer(newCustomer);
+    this.props.updateCustomer(this.props.link, newCustomer);
     this.handleClose();
   };
   render() {
@@ -54,13 +64,15 @@ export default class componentName extends Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Add new Customer</DialogTitle>
+          <DialogTitle id="form-dialog-title">Edit Customer</DialogTitle>
           <DialogContent>
             <TextField
               onChange={this.handleChange}
+              autoFocus
               margin="dense"
               id="firstname"
               label="Firstname"
+              value={this.state.firstname}
               fullWidth
             />
             <TextField
@@ -68,6 +80,7 @@ export default class componentName extends Component {
               margin="dense"
               id="lastname"
               label="Lastname"
+              value={this.state.lastname}
               fullWidth
             />
             <TextField
@@ -75,6 +88,7 @@ export default class componentName extends Component {
               margin="dense"
               id="streetaddress"
               label="Address"
+              value={this.state.streetaddress}
               fullWidth
             />
             <TextField
@@ -83,6 +97,7 @@ export default class componentName extends Component {
               id="postcode"
               label="Postcode"
               type="number"
+              value={this.state.postcode}
               fullWidth
             />
 
@@ -91,6 +106,7 @@ export default class componentName extends Component {
               margin="dense"
               id="city"
               label="City"
+              value={this.state.city}
               fullWidth
             />
             <TextField
@@ -98,6 +114,7 @@ export default class componentName extends Component {
               margin="dense"
               id="email"
               label="Email"
+              value={this.state.email}
               fullWidth
             />
             <TextField
@@ -106,6 +123,7 @@ export default class componentName extends Component {
               id="phone"
               label="Phone number"
               type="number"
+              value={this.state.phone}
               fullWidth
             />
           </DialogContent>
@@ -113,13 +131,13 @@ export default class componentName extends Component {
             <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.addCustomer} color="primary">
+            <Button onClick={this.updateCustomer} color="primary">
               Save
             </Button>
           </DialogActions>
         </Dialog>
         <Button onClick={this.handleClickOpen} color="primary">
-          ADD CUSTOMER{" "}
+          EDIT{" "}
         </Button>
       </div>
     );
