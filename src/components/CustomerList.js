@@ -83,11 +83,15 @@ export default class componentName extends Component {
           return row.value.replace(/[\D]/g, "");
         }
       },
-      { Header: "Firstname", accessor: "firstname" },
-      { Header: "Lastname", accessor: "lastname" },
-      { Header: "Address", accessor: "streetaddress" },
-      { Header: "Postcode", accessor: "postcode" },
-      { Header: "City", accessor: "city" },
+      {
+        Header: "Customer name",
+
+        Cell: props => (
+          <span>
+            {props.original.firstname} {props.original.lastname}
+          </span>
+        )
+      },
       { Header: "Email", accessor: "email" },
       { Header: "Phone", accessor: "phone" },
       {
@@ -109,7 +113,7 @@ export default class componentName extends Component {
         accessor: "links[0].href",
         filterable: "false",
         sortable: "false",
-        width: 100,
+        width: 150,
         Cell: ({ value, row }) => (
           <AddTraining
             saveTraining={this.saveTraining}
@@ -121,6 +125,7 @@ export default class componentName extends Component {
       {
         Header: "",
         accessor: "links[0].href",
+        width: 100,
         Cell: value => (
           <Button color="secondary" onClick={() => this.deleteCustomer(value)}>
             Delete

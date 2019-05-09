@@ -24,7 +24,16 @@ export default class componentName extends Component {
       },
       { Header: "Duration in minutes", accessor: "duration" },
       { Header: "Activity", accessor: "activity" },
-      { Header: "Customer ID", accessor: "customer.id" }
+      {
+        Header: "Customer name",
+
+        Cell: row => (
+          <span>
+            {row.original.customer.firstname} {row.original.customer.lastname}
+          </span>
+        )
+      },
+      { Header: "", accessor: "customer.id" }
     ];
 
     return (
