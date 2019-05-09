@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import AddCustomer from "./AddCustomer";
 import { Snackbar } from "@material-ui/core";
 import EditCustomer from "./EditCustomer";
+import AddTraining from "./AddTraining";
 export default class componentName extends Component {
   constructor(props) {
     super(props);
@@ -43,6 +44,17 @@ export default class componentName extends Component {
     })
       .then(res => this.loadCustomers())
       .then(res => this.setState({ open: true, message: "Added new customer" }))
+      .catch(err => console.error(err));
+  };
+  saveTraining = training => {
+    fetch("https://customerrest.herokuapp.com/api/trainings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(training)
+    })
+      .then(res => this.setState({ open: true, message: "Added new training" }))
       .catch(err => console.error(err));
   };
   updateCustomer = (link, updatedCustomer) => {
@@ -87,6 +99,20 @@ export default class componentName extends Component {
         Cell: ({ value, row }) => (
           <EditCustomer
             updateCustomer={this.updateCustomer}
+            link={value}
+            customer={row}
+          />
+        )
+      },
+      {
+        Header: "",
+        accessor: "links[0].href",
+        filterable: "false",
+        sortable: "false",
+        width: 100,
+        Cell: ({ value, row }) => (
+          <AddTraining
+            saveTraining={this.saveTraining}
             link={value}
             customer={row}
           />
