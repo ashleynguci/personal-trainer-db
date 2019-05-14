@@ -16,7 +16,6 @@ export default class componentName extends Component {
       lastname: "",
       streetaddress: "",
       postcode: "",
-
       city: "",
       email: "",
       phone: ""
@@ -48,7 +47,6 @@ export default class componentName extends Component {
       lastname: this.state.lastname,
       streetaddress: this.state.streetaddress,
       postcode: this.state.postcode,
-
       city: this.state.city,
       email: this.state.email,
       phone: this.state.phone
