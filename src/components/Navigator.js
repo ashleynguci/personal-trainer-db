@@ -6,6 +6,7 @@ const Navigator = props => {
       <Link to="/"> Customers </Link>
 
       <Link to="/trainings">Trainings</Link>
+      <Link to="/calendar">Calendar</Link>
     </div>
   );
 };

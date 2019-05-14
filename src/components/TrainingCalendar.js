@@ -1,0 +1,68 @@
+import React, { Component } from "react";
+
+import "react-table/react-table.css";
+import Moment from "react-moment";
+
+import BigCalendar from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
+class TrainingCalendar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { trainings: [], eventList: [] };
+  }
+  componentDidMount() {
+    this.loadTrainings();
+  }
+
+  loadTrainings = () => {
+    fetch("http://customerrest.herokuapp.com/gettrainings")
+      .then(res => res.json())
+      .then(jsondata => {
+        this.setState({ trainings: jsondata });
+        var myEventList = [];
+        var json = Object.values(jsondata);
+        var startDate = null;
+        var endDate = null;
+        for (var i = 0; i < json.length; ++i) {
+          if (json[i].date == null) {
+            continue;
+          }
+          try {
+            startDate = new Date(json[i].date);
+            endDate = new Date();
+            endDate.setUTCMinutes(startDate.getUTCMinutes() + json[i].duration);
+            myEventList.push({
+              title: json[i].activity,
+              start: startDate,
+              end: endDate
+            });
+          } catch (err) {
+            console.error(err);
+          }
+        }
+        console.log(myEventList);
+        this.setState({ eventList: myEventList });
+      })
+      .catch(err => console.error(err));
+  };
+
+  render() {
+    const localizer = BigCalendar.momentLocalizer(moment);
+
+    return (
+      <div>
+        <BigCalendar
+          localizer={localizer}
+          events={this.state.eventList}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 500, width: this.state.width }}
+        />
+      </div>
+    );
+  }
+}
+
+export default TrainingCalendar;
