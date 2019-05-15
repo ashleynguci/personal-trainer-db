@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-
+import firebaseConfig from "../firebase";
 import "react-table/react-table.css";
 import Moment from "react-moment";
-
+import Button from "@material-ui/core/Button";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -54,6 +54,12 @@ class TrainingCalendar extends Component {
 
     return (
       <div>
+        <Button
+          color="secondary"
+          onClick={() => firebaseConfig.auth().signOut()}
+        >
+          Sign out
+        </Button>
         <BigCalendar
           localizer={localizer}
           events={this.state.eventList}

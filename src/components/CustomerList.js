@@ -6,6 +6,7 @@ import AddCustomer from "./AddCustomer";
 import { Snackbar } from "@material-ui/core";
 import EditCustomer from "./EditCustomer";
 import AddTraining from "./AddTraining";
+import firebaseConfig from "../firebase";
 export default class componentName extends Component {
   constructor(props) {
     super(props);
@@ -135,6 +136,12 @@ export default class componentName extends Component {
     ];
     return (
       <div>
+        <Button
+          color="secondary"
+          onClick={() => firebaseConfig.auth().signOut()}
+        >
+          Sign out
+        </Button>
         <AddCustomer saveCustomer={this.saveCustomer} />
         <ReactTable
           data={this.state.customers}

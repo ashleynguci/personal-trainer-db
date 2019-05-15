@@ -3,6 +3,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import Moment from "react-moment";
 import Button from "@material-ui/core/Button";
+import firebaseConfig from "../firebase";
 export default class componentName extends Component {
   constructor(props) {
     super(props);
@@ -69,6 +70,12 @@ export default class componentName extends Component {
 
     return (
       <div>
+        <Button
+          color="secondary"
+          onClick={() => firebaseConfig.auth().signOut()}
+        >
+          Sign out
+        </Button>
         <ReactTable
           data={this.state.trainings}
           columns={columns}
