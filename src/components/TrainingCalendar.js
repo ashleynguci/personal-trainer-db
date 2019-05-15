@@ -21,19 +21,20 @@ class TrainingCalendar extends Component {
       .then(res => res.json())
       .then(jsondata => {
         this.setState({ trainings: jsondata });
-        var myEventList = [];
+        var EventList = [];
         var json = Object.values(jsondata);
         var startDate = null;
         var endDate = null;
-        for (var i = 0; i < json.length; ++i) {
+        for (var i = 0; i < json.length; i++) {
           if (json[i].date == null) {
             continue;
           }
           try {
             startDate = new Date(json[i].date);
-            endDate = new Date();
+            endDate = new Date(json[i].date);
+            //can not pass endDate = startDate, because they both reference on object, change endDate will change startDate;
             endDate.setUTCMinutes(startDate.getUTCMinutes() + json[i].duration);
-            myEventList.push({
+            EventList.push({
               title: json[i].activity,
               start: startDate,
               end: endDate
@@ -42,8 +43,8 @@ class TrainingCalendar extends Component {
             console.error(err);
           }
         }
-        console.log(myEventList);
-        this.setState({ eventList: myEventList });
+        console.log(EventList);
+        this.setState({ eventList: EventList });
       })
       .catch(err => console.error(err));
   };
