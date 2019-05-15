@@ -9,11 +9,18 @@ const Home = () => {
       <h2>Final project</h2>
       <p>Course: Frontend Programming</p>
       <p>Teacher: Juha Hinkula</p>
-      <Link to="/login" style={{ textDecoration: "none" }}>
-        <Button color="secondary">Log in</Button>
-      </Link>
+      <p>
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          <Button variant="contained" color="secondary">
+            Log in
+          </Button>
+        </Link>
+      </p>
+
       <Link to="/signup" style={{ textDecoration: "none" }}>
-        <Button color="primary">Sign Up</Button>
+        <Button variant="contained" color="primary">
+          Sign Up
+        </Button>
       </Link>
     </>
   );

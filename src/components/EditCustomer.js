@@ -11,7 +11,6 @@ export default class componentName extends Component {
     super(props);
     this.state = {
       open: false,
-
       firstname: "",
       lastname: "",
       streetaddress: "",
@@ -134,7 +133,11 @@ export default class componentName extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-        <Button onClick={this.handleClickOpen} color="primary">
+        <Button
+          onClick={this.handleClickOpen}
+          variant="contained"
+          color="primary"
+        >
           EDIT{" "}
         </Button>
       </div>

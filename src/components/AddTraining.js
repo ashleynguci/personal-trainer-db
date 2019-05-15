@@ -5,7 +5,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
+import Moment from "react-moment";
 export default class componentName extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ export default class componentName extends Component {
   };
   addTraining = () => {
     const newTraining = {
-      date: this.state.date,
+      date: new Date(this.state.date),
       duration: this.state.duration,
       activity: this.state.activity,
       customer: this.state.customer
@@ -59,8 +59,8 @@ export default class componentName extends Component {
               autoFocus
               margin="dense"
               id="date"
-              type="date"
-              label="Date"
+              type="datetime-local"
+              label="Schedule"
               value={this.state.date}
               fullWidth
             />
@@ -99,7 +99,7 @@ export default class componentName extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-        <Button onClick={this.handleClickOpen} color="primary">
+        <Button onClick={this.handleClickOpen} variant="contained">
           ADD TRAINING{" "}
         </Button>
       </div>
