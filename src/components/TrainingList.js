@@ -14,7 +14,7 @@ export default class componentName extends Component {
   }
 
   loadTrainings = () => {
-    fetch("http://customerrest.herokuapp.com/gettrainings")
+    fetch("https://customerrest.herokuapp.com/gettrainings")
       .then(response => response.json())
       .then(jsondata => this.setState({ trainings: jsondata }))
       .catch(err => console.error(err));

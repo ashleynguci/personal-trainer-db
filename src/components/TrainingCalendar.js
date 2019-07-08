@@ -17,7 +17,7 @@ class TrainingCalendar extends Component {
   }
 
   loadTrainings = () => {
-    fetch("http://customerrest.herokuapp.com/gettrainings")
+    fetch("https://customerrest.herokuapp.com/gettrainings")
       .then(res => res.json())
       .then(jsondata => {
         this.setState({ trainings: jsondata });

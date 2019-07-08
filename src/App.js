@@ -10,14 +10,23 @@ import { AuthProvider } from "./Authentic/Auth";
 import Login from "./Authentic/Login";
 import SignUp from "./Authentic/SignUp";
 import PrivateRoute from "./Authentic/PrivateRoute";
+
+let basename = "";
+if (process.env.NODE_ENV === "production") {
+  basename = "personal-trainer-db";
+} else {
+  basename = "";
+}
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <AuthProvider>
-          <Router>
+          <Router basename={basename}>
             <div>
               <Navigator />
+
               <Switch>
                 <Route exact path="/" component={Home} />
                 <PrivateRoute
